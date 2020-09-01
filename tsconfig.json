@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "lib": ["dom", "es2017"],
+    "target": "es6",
+    "experimentalDecorators": true,
+    "typeRoots": ["./src/index.d.ts", "node_modules/@types/"]
+  },
+  "include": [
+    "./src/**/**/**/*",
+    "./__tests__/**/**/*"
+  ]
+}
