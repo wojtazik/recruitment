@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import i18n from 'i18next'
 import { initReactI18next, I18nextProvider } from 'react-i18next'
 import resources from './translations/resources'
+import Routing from "./components/Routing/Routing";
+import 'reset-css'
 
 if (document.getElementById('simple-app-root')) {
   const i18nInstance = i18n.createInstance()
@@ -10,7 +12,7 @@ if (document.getElementById('simple-app-root')) {
     .use(initReactI18next)
     .init({
       resources,
-      lng: 'pl',
+      lng: 'en',
       keySeparator: false,
       interpolation: {
         escapeValue: false
@@ -19,7 +21,7 @@ if (document.getElementById('simple-app-root')) {
 
   ReactDOM.render(
     <I18nextProvider i18n={i18nInstance}>
-      World Hello
+      <Routing />
     </I18nextProvider>,
     document.getElementById('simple-app-root')
   )

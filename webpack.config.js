@@ -4,6 +4,7 @@ var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const distPath = 'dist'
 const mode = process.env.NODE_ENV === 'production' ? 'prod' : 'dev'
+const isDevServer = process.argv.find(v => v.includes('webpack-dev-server'))
 
 module.exports = {
   entry: {
@@ -78,7 +79,19 @@ module.exports = {
             }
           }
         ]
-      }
+      }, {
+        test: /\.(jpg|jpeg|gif|png|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images',
+              publicPath: './images'
+            }
+          }
+        ]
+      },
     ]
   },
   devServer: {
