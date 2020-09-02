@@ -12,6 +12,7 @@ interface PropsInterface {
 
 const AuthorModal = ({ authorId, setShowAuthorModal }: PropsInterface) => {
   const [author, setAuthor] = useState<AuthorInterface>(null)
+  const [avatarLoaded, setAvatarLoaded] = useState(false)
   const [cookies] = useCookies()
   const { t } = useTranslation()
 
@@ -30,7 +31,12 @@ const AuthorModal = ({ authorId, setShowAuthorModal }: PropsInterface) => {
           <>
             <div className='author__data'>
               <h3 className='author__name'>{author.name}</h3>
-              <img src={author.avatar} alt={`Author ${author.name} avatar`} className='author__avatar' />
+              <img
+                src={author.avatar}
+                alt={`Author ${author.name} avatar`}
+                className={`author__avatar ${avatarLoaded ? 'author__avatar--loaded' : ''}`}
+                onLoad={() => setAvatarLoaded(true)}
+              />
             </div>
             <div className='author__description'>
               {author.description}
