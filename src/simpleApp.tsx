@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import i18n from 'i18next'
 import { initReactI18next, I18nextProvider } from 'react-i18next'
 import resources from './translations/resources'
-import Routing from "./components/Routing/Routing";
+import Routing from './components/Routing/Routing'
 import 'reset-css'
 
 if (document.getElementById('simple-app-root')) {

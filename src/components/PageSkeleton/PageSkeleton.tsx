@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from "../Navbar/Navbar";
+import Navbar from '../Navbar/Navbar'
 import './PageSkeleton.scss'
 
 interface PropsInterface {
@@ -10,7 +10,7 @@ const PageSkeleton = ({ children } : PropsInterface) => {
   return (
     <div className='page-skeleton'>
       <Navbar />
-      { children }
+      {children}
     </div>
   )
 }

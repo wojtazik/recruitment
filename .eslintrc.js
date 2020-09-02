@@ -14,8 +14,8 @@ module.exports = {
   "plugins": ["jest"],
   "parser": "@typescript-eslint/parser",
   "rules": {
-    'no-unused-vars': 0,
-    'no-unused-constructor': 0,
+    'no-unused-vars': "off",
+    'no-unused-constructor': "off",
   },
   "settings": {
     "react": {

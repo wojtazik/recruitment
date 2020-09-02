@@ -1,21 +1,20 @@
-import React from "react";
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
   Redirect
-} from "react-router-dom"
-import List from "../../pages/List/List";
-import Login from "../../pages/Login/Login";
-import Article from "../../pages/Article/Article";
-import ErrorPage from "../../pages/ErrorPage/ErrorPage";
-import PageSkeleton from "../PageSkeleton/PageSkeleton";
-import {useCookies} from "react-cookie";
+} from 'react-router-dom'
+import List from '../../pages/List/List'
+import Login from '../../pages/Login/Login'
+import Article from '../../pages/Article/Article'
+import ErrorPage from '../../pages/ErrorPage/ErrorPage'
+import PageSkeleton from '../PageSkeleton/PageSkeleton'
+import { useCookies } from 'react-cookie'
 
 const Routing = () => {
-
-  const [{auth}] = useCookies()
+  const [{ auth }] = useCookies()
   const isAuthorized = auth
 
   return (
@@ -31,9 +30,9 @@ const Routing = () => {
             isAuthorized ? <Redirect to='/' /> : <Login />
           }
         </Route>
-        <Route path='/articles/:id'>
+        <Route path='/post/:id'>
           {
-            isAuthorized ? <Article /> : <Redirect to='/login' />
+            isAuthorized ? <PageSkeleton><Article /></PageSkeleton> : <Redirect to='/login' />
           }
         </Route>
         <Route>

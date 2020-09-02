@@ -1,16 +1,15 @@
 import axios from 'axios'
-import config from "../config/config";
-import readToken from "./readToken";
+import config from '../config/config'
 
-type methods = "POST" | "GET" | "PUT" | "PATCH" | "DELETE"
+type methods = 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE'
 
-export default (endpointUrl: string, method: methods, withAuth: boolean, data?: object) => {
+export default (endpointUrl: string, method: methods, withAuth: boolean, authToken?: string, data?: object) => {
   return axios({
     method,
     url: config.apiUrl + endpointUrl,
-    headers: {'x-token': readToken()},
+    headers: withAuth ? { 'x-token': authToken } : {},
     data
   })
-    .then((resp) => ({status: 200, response: resp.data.data, error: null}))
-    .catch((err) => ({status: err.response.data.code, response: err.response.data.data.message}))
+    .then((resp) => ({ status: 200, response: resp.data.data, error: null }))
+    .catch((err) => ({ status: err.response.data.code, response: err.response.data.data.message }))
 }
