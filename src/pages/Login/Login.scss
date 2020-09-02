@@ -8,7 +8,7 @@
     letter-spacing: 1px;
     color: rgb(55, 55, 55);
     text-align: center;
-    margin-top: 150px;
+    margin-top: 15vh;
   }
 
   &__form-container {
@@ -33,6 +33,19 @@
     border-bottom: 2px solid rgba(20, 255, 30, .35);
     border-radius: 3px;
     outline: none;
+
+    &--error {
+      border-bottom: 2px solid rgba(255, 20, 30, .85);
+    }
+  }
+
+  &__error {
+    padding: 5px 3px;
+    border: 1px solid darkred;
+    color: rgb(55,55,55);
+    border-radius: 3px;
+    text-align: center;
+    margin: 5px 10px;
   }
 
   &__submit {

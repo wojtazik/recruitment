@@ -1,0 +1,19 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+
+  &__item {
+    padding: 5px 7px;
+    font-size: 18px;
+    margin: 0 6px;
+    box-shadow: -2px 2px 8px 2px rgba(120,120,120,0.75);
+    cursor: pointer;
+
+    &--active {
+      background: rgba(200, 255, 200, .4);
+      cursor: default;
+    }
+  }
+}

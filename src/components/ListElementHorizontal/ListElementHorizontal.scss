@@ -1,0 +1,100 @@
+.list-item-horizontal {
+  box-shadow: -2px 2px 8px 2px rgba(120,120,120,0.75);
+  padding: 15px;
+  margin: 15px 5px;
+  transition: all .3s;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  &__thumbnail {
+    box-shadow: -2px 2px 4px 1px rgba(180,180,180,0.75);
+    border-radius: 2px;
+    max-width: 120px;
+    height: auto;
+  }
+
+  &__data-wrapper {
+    margin-left: 25px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__title-and-date {
+    min-width: 80%;
+    margin-right: 25px;
+    margin-left: 25px;
+  }
+
+  &__date {
+    color: rgb(55,55,55);
+    margin-bottom: 25px;
+    margin-top: 5px;
+    font-style: italic;
+  }
+
+  &__link-title {
+    font-size: 32px;
+    color: rgb(55,55,55);
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+  &__excerpt-wrapper {
+    transform-origin: top;
+    transition: max-height .8s;
+    overflow: hidden;
+
+    &--enter {
+      max-height: 0;
+    }
+
+    &--enter-active {
+      max-height: 500px;
+    }
+
+    &--exit {
+      max-height: 500px;
+    }
+
+    &--exit-active {
+      max-height: 0;
+    }
+  }
+
+  &__excerpt-content {
+    padding: 15px 25px;
+    margin-top: 10px;
+  }
+
+  &__buttons-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 25px;
+  }
+
+  &__action-button {
+    &:first-child {
+      margin-right: 3px;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 8px;
+    box-shadow: -2px 2px 4px 1px rgba(180,180,180,0.75);
+    color: rgb(55,55,55);
+    cursor: pointer;
+
+    &--hide {
+      width: auto;
+      margin-left: auto;
+    }
+  }
+}
