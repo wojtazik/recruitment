@@ -10,6 +10,8 @@ import { ListType } from '../../model/ListTypeInterface'
 import ListElementHorizontal from '../../components/ListElementHorizontal/ListElementHorizontal'
 import ListElementGrid from '../../components/ListElementGrid/ListElementGrid'
 import { PostInterface } from '../../model/PostInterface'
+import { setError } from '../../store/actions/errorActions'
+import { useDispatch } from 'react-redux'
 
 const getUrlPageParam = () => {
   const urlParams = new URLSearchParams(window.location.search)
@@ -28,6 +30,7 @@ const List = () => {
     }
   )
   const [listType, setListType] = useState<ListType>('list')
+  const dispatch = useDispatch()
 
   useEffect(() => {
     (async () => {
@@ -37,7 +40,12 @@ const List = () => {
         true,
         cookies.auth
       )
-      setPostsList(apiResponse.response)
+      if (apiResponse.status === 200) {
+        setPostsList(apiResponse.response)
+      } else {
+        dispatch(setError({ errorCode: apiResponse.status, errorMessage: apiResponse.response }))
+        history.push('/error')
+      }
     })()
   }, [requestParams])
 

@@ -6,6 +6,9 @@ import { useTranslation } from 'react-i18next'
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import { CommentInterface } from '../../model/CommentInterface'
+import { setError } from '../../store/actions/errorActions'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 interface PropsInterface {
   postId: number
@@ -22,12 +25,18 @@ const CommentsModal = ({ postId, setShowCommentsModal }: PropsInterface) => {
   const [cookies] = useCookies()
   const { t } = useTranslation()
   const [formSentSuccessfully, setFormSentSuccessfully] = useState(false)
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   const sendComment = (data: CommentInterface) => {
     (async () => {
       const response = await makeApiRequest('comments', 'POST', true, cookies.auth, data)
       if (response.status === 200) {
         setFormSentSuccessfully(true)
+      } else {
+        setShowCommentsModal(false)
+        dispatch(setError({ errorCode: response.status, errorMessage: response.response }))
+        history.push('/error')
       }
     })()
   }

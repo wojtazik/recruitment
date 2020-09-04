@@ -4,6 +4,9 @@ import makeApiRequest from '../../utils/makeApiRequest'
 import { useCookies } from 'react-cookie'
 import { AuthorInterface } from '../../model/AuthorInterface'
 import { useTranslation } from 'react-i18next'
+import { setError } from '../../store/actions/errorActions'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 interface PropsInterface {
   authorId: number
@@ -15,11 +18,19 @@ const AuthorModal = ({ authorId, setShowAuthorModal }: PropsInterface) => {
   const [avatarLoaded, setAvatarLoaded] = useState(false)
   const [cookies] = useCookies()
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
     (async () => {
       const response = await makeApiRequest(`author/${authorId}`, 'GET', true, cookies.auth)
-      setAuthor(response.response)
+      if (response.status === 200) {
+        setAuthor(response.response)
+      } else {
+        setShowAuthorModal(false)
+        dispatch(setError({ errorCode: response.status, errorMessage: response.response }))
+        history.push('/error')
+      }
     })()
   }, [])
 

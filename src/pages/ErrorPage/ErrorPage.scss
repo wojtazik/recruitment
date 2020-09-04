@@ -1,0 +1,37 @@
+.error-page {
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+
+  &__error-code {
+    margin-top: 150px;
+    text-align: center;
+    font-size: 71px;
+    color: rgb(55,55,55);
+    letter-spacing: 4px;
+  }
+
+  &__error-text {
+    margin-top: 45px;
+    font-size: 36px;
+    color: rgb(55,55,55);
+    text-align: center;
+  }
+
+  &__come-back-button {
+    padding: 9px 15px;
+    font-size: 21px;
+    border-radius: 4px;
+    background: #e83e8c;
+    color: white;
+    transition: all .3s linear;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    margin-top: 25px;
+
+    &:hover {
+      background: darken(#e83e8c, 10%);
+    }
+  }
+}

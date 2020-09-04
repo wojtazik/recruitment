@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import makeApiRequest from '../../utils/makeApiRequest'
 import { useCookies } from 'react-cookie'
 import { PostInterface } from '../../model/PostInterface'
@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next'
 import AuthorModal from '../../components/AuthorModal/AuthorModal'
 import PortalModal from '../../components/PortalModal/PortalModal'
 import CommentsModal from '../../components/CommentsModal/CommentsModal'
+import { useDispatch } from 'react-redux'
+import { setError } from '../../store/actions/errorActions'
 
 const Article = () => {
   const [post, setPost] = useState<PostInterface>(null)
@@ -17,6 +19,8 @@ const Article = () => {
   const { id } = useParams()
   const [cookies] = useCookies()
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
     (async () => {
@@ -26,7 +30,12 @@ const Article = () => {
         true,
         cookies.auth
       )
-      setPost(apiResponse.response)
+      if (apiResponse.status === 200) {
+        setPost(apiResponse.response)
+      } else {
+        dispatch(setError({ errorCode: apiResponse.status, errorMessage: apiResponse.response }))
+        history.push('/error')
+      }
     })()
 
     return async () => {
@@ -39,6 +48,10 @@ const Article = () => {
         cookies.auth,
         { time: exitDate - pageVisitedDate }
       )
+      if (resp.status !== 200) {
+        dispatch(setError({ errorCode: resp.status, errorMessage: 'Something goes wrong' }))
+        history.push('/error')
+      }
     }
   }, [])
 

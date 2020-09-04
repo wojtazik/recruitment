@@ -16,7 +16,8 @@ const resources = {
       'comment.content': 'Comment content',
       'comment.agree-permission': 'Agree Permission',
       'comment.submit': 'Submit',
-      'comment.success': 'Form sent successfully'
+      'comment.success': 'Form sent successfully',
+      'error-page.come-back': 'Back to homepage'
     }
   }
 }

@@ -10,6 +10,8 @@ Then use command
 ```bash
     npm run start:dev
 ```
+port: 9001
+
 to start app with wepback dev server.
 
 You can also chec and fix codestyle using commands:
