@@ -36,7 +36,9 @@ const Routing = () => {
           }
         </Route>
         <Route>
-          <ErrorPage />
+          <PageSkeleton>
+            <ErrorPage />
+          </PageSkeleton>
         </Route>
       </Switch>
     </Router>

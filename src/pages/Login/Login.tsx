@@ -6,9 +6,14 @@ import { useTranslation } from 'react-i18next'
 import './Login.scss'
 import config from '../../config/config'
 import * as Yup from 'yup'
+import { setError } from '../../store/actions/errorActions'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
   const [loginError, setLoginError] = useState(null)
+  const history = useHistory()
+  const dispatch = useDispatch()
 
   const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -39,6 +44,10 @@ const Login = () => {
       const response = await loginRequest(values, setCookie)
       if (response.status !== 200) {
         setLoginError(response)
+      }
+      if (response.status !== 200 && response.status !== 403) {
+        dispatch(setError({ errorCode: response.status, errorMessage: response.response }))
+        history.push('/error')
       }
     }
   })
